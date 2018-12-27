@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue第一节</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{message}}</br>
+        {{(a < 2)? a : message}}
+    </div>
+
+    
+    <script>
+        var view = new Vue({
+            el: '#app',
+            data:{
+                message: '开始学习vue',
+                a: 5
+            },
+            created:function(){
+                alert('vue实例刚创建，未挂载')
+            },
+            mounted:function(){
+                alert('vue实例刚创建完成，刚刚挂载')
+            }
+        })
+    </script>
+</body>
+</html>
