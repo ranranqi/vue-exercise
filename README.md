@@ -1,5 +1,28 @@
 # vue-exercise
 ## 1，创建vue实例。
+```
+ <div id="app">
+        {{message}}</br>
+        {{(a < 2)? a : message}}
+    </div>
+
+    
+    <script>
+        var view = new Vue({
+            el: '#app',
+            data:{
+                message: '开始学习vue',
+                a: 5
+            },
+            created:function(){
+                alert('vue实例刚创建，未挂载')
+            },
+            mounted:function(){
+                alert('vue实例刚创建完成，刚刚挂载')
+            }
+        })
+    </script>
+```
 ### 访问vue实例的属性 --- 使用$符
   view.$el  
   view.$data
