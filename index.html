@@ -6,12 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>vue第一节</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.min.js"></script>
+    <style>
+        .xxx{
+            background: green;
+            height: 30px;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
         {{date}}
         <hr>
         {{date | formDate}}
+        <hr>
+        <p v-text='apple'></p>
+        <hr>
+        <div  v-html="banana"></div>
+        <hr>
+        <div v-bind:class='className'></div>
+        <hr>
+        <button v-on:click='addN'>{{n}}</button>
     </div>
 
     
@@ -22,7 +36,16 @@
         var view = new Vue({
             el: '#app',
             data:{
-                date: new Date()
+                date: new Date(),
+                apple: '苹果',
+                banana: '<p style="color: red; border: 1px dashed; width: 50%;">香蕉啊啊啊啊</p>',
+                className: 'xxx',
+                n : 0
+            },
+            methods:{
+                addN:function(){
+                    view.n = view.n + 1
+                }
             },
             filters:{
                 formDate:function(value){
