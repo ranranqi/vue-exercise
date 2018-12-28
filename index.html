@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>vue第一节</title>
+    <title>学习vue.js</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.min.js"></script>
     <style>
-        .xxx{
+        .xxx {
             background: green;
             height: 30px;
         }
+        .yyy{
+            height: 22px;
+            width: 31px;
+            background: rgb(45, 165, 145);
+            color: rgb(32, 32, 31);
+            border-radius: 5px;
+            position: relative;
+            top: -20px;
+            left: 127px;
+        }
     </style>
 </head>
+
 <body>
     <div id="app">
         {{date}}
@@ -21,53 +33,91 @@
         <hr>
         <p v-text='apple'></p>
         <hr>
-        <div  v-html="banana"></div>
+        <div v-html="banana"></div>
         <hr>
         <div v-bind:class='className'></div>
         <hr>
         <button v-on:click='addN'>{{n}}</button>
+        <hr>
+        两购物车的总价：<div v-bind:class='className1'>{{prices}}</div>
     </div>
 
-    
+
     <script>
-        var plusDate = function(value){
-            return (value < 10)? '0' + value : value
+        var plusDate = function (value) {
+            return (value < 10) ? '0' + value : value
         }
         var view = new Vue({
             el: '#app',
-            data:{
+            data: {
                 date: new Date(),
                 apple: '苹果',
                 banana: '<p style="color: red; border: 1px dashed; width: 50%;">香蕉啊啊啊啊</p>',
                 className: 'xxx',
-                n : 0
+                className1: 'yyy',
+                n: 0,
+                package1: [{
+                        name: '裤子',
+                        price: 100,
+                        count: 2
+                    },
+                    {
+                        name: 'T恤',
+                        price: 50,
+                        count: 4
+                    }
+                ],
+                package2: [{
+                        name: '帽子',
+                        price: 30,
+                        count: 1
+                    },
+                    {
+                        name: '短裤',
+                        price: 60,
+                        count: 3
+                    }
+                ]
             },
-            methods:{
-                addN:function(){
+            methods: {
+                addN: function () {
                     view.n = view.n + 1
                 }
             },
-            filters:{
-                formDate:function(value){
+            computed: {
+                prices: function () {
+                    var prices = 0
+                    for(var i=0;i<this.package1.length;i++){
+                        prices += this.package1[i].price * this.package1[i].count
+                    }
+                    for(var j=0;j<this.package2.length;j++){
+                        prices += this.package2[j].price * this.package2[j].count
+                    }
+                    return prices
+                }
+            },
+            filters: {
+                formDate: function (value) {
                     var date = new Date(value)
                     var year = date.getFullYear()
-                    var month = plusDate(date.getMonth()+1)
+                    var month = plusDate(date.getMonth() + 1)
                     var day = plusDate(date.getDay())
                     var hours = plusDate(date.getHours())
                     var min = plusDate(date.getMinutes())
                     var sec = plusDate(date.getSeconds())
-                return year +'/' +month +'/' +day +' ' +hours +':' +min +':' +sec
+                    return year + '/' + month + '/' + day + ' ' + hours + ':' + min + ':' + sec
                 }
             },
-            mounted:function(){
-                var id = setInterval(()=>{
+            mounted: function () {
+                var id = setInterval(() => {
                     view.date = new Date();
-                },1000)
+                }, 1000)
             },
-            destoryed:function(){
+            destoryed: function () {
                 clearInterval(id)
             }
         })
     </script>
 </body>
+
 </html>
