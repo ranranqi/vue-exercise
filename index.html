@@ -9,19 +9,33 @@
 </head>
 <body>
     <div id="app">
-        {{date}}<br>
-        
+        {{date}}
+        <hr>
+        {{date | formDate}}
     </div>
 
     
     <script>
-        
+        var plusDate = function(value){
+            return (value < 10)? '0' + value : value
+        }
         var view = new Vue({
             el: '#app',
             data:{
                 date: new Date()
             },
-            
+            filters:{
+                formDate:function(value){
+                    var date = new Date(value)
+                    var year = date.getFullYear()
+                    var month = plusDate(date.getMonth()+1)
+                    var day = plusDate(date.getDay())
+                    var hours = plusDate(date.getHours())
+                    var min = plusDate(date.getMinutes())
+                    var sec = plusDate(date.getSeconds())
+                return year +'/' +month +'/' +day +' ' +hours +':' +min +':' +sec
+                }
+            },
             mounted:function(){
                 var id = setInterval(()=>{
                     view.date = new Date();
