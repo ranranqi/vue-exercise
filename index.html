@@ -83,6 +83,8 @@
         <hr>
         绑定内联样式的对象语法<br>
         <p v-bind:style="{color: color, fontSize: fontSize, border: border}">看我哈哈哈</p>
+        计算属性也可以绑定样式<br>
+        <div :style="ssss">看我啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</div>
     </div>
 
 
@@ -174,6 +176,13 @@
                         var names = newName.split(',')
                         this.firstName = names[0]
                         this.lastName = names[1]
+                    }
+                },
+                ssss:function(){
+                    return {
+                        color: 'green',
+                        fontSize: '40px',
+                        border: '2px solid black' 
                     }
                 }
             },
