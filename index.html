@@ -30,6 +30,14 @@
             font-size: 16px;
             padding: 0 10px;
         }
+        .out{
+            background: blue;
+            height: 100px;
+            width: 100px;
+        }
+        .wrap{
+            border: 5px solid black;
+        }
     </style>
 </head>
 
@@ -54,6 +62,10 @@
         两购物车的总价：<div v-bind:class='className1'>{{prices}}</div>
         <hr>
         我的名字是 --- {{fullName}}
+        <hr>
+        绑定class的对象语法：对象的键是类名，值是布尔 <br>
+        <div :class="{out: isout,wrap: iswrap}"></div>
+        <hr>
     </div>
 
 
@@ -95,7 +107,9 @@
                 ],
                 firstName: 'zhang',
                 lastName: 'Sanfeng',
-                text: '123,456,789'
+                text: '123,456,789',
+                isout: true,
+                iswrap: true,
             },
             methods: {
                 addN: function () {
