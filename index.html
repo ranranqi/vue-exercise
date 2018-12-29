@@ -77,6 +77,12 @@
         <hr>
         需求： 点击一个按钮，背景红、蓝切换。<br>
         <input type="button" value="121212121212" :class="{buttonbg: isbuttonbg, buttonbg2: isbuttonbg2}" @click="changeColor">
+        <hr>
+        绑定class的数组与对象语法的混用: 第一个成员是对象语法，第二个成员是数组语法<br>
+        <div :class="[{out: isout},classTwo]"></div>
+        <hr>
+        绑定内联样式的对象语法<br>
+        <p v-bind:style="{color: color, fontSize: fontSize, border: border}">看我哈哈哈</p>
     </div>
 
 
@@ -124,7 +130,10 @@
                 classOne: 'out',
                 classTwo: 'wrap',
                 isbuttonbg: true,
-                isbuttonbg2: false
+                isbuttonbg2: false,
+                color: 'red',
+                fontSize: '20px',
+                border: '5px solid purple'
             },
             methods: {
                 addN: function () {
