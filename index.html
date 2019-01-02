@@ -100,6 +100,11 @@
         v-if与v-show的比较：<br>
         v-if: 实时渲染，页面显示就渲染，不显示就移除。<br>
         v-show: 只渲染一次，永远存在html文档中，只是改变了css的display的属性。 none与block。
+        <hr>
+        v-for用法：一定是写在要遍历的元素上，v-for后接等号。<br>
+        <ul>
+            <li v-for="item in items">{{item.name}}</li>
+        </ul>
     </div>
 
 
@@ -151,7 +156,12 @@
                 color: 'red',
                 fontSize: '20px',
                 border: '5px solid purple',
-                type: 'name'
+                type: 'name',
+                items: [
+                    {name: '多练习'},
+                    {name: '多思考'},
+                    {name: '多看笔记好好听课'}
+                ]
             },
             methods: {
                 addN: function () {
