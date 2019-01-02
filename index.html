@@ -110,6 +110,11 @@
         <ul>
             <li v-for="(item, index) in items">{{index}}---{{item.name}}</li>
         </ul>
+        <hr>
+        遍历一个对象的多个属性<br>
+        <div v-for="value in nvshen">{{value}}</div>
+        拿到value,key,index的写法： v-k-i 外开<br>
+        <div v-for="(value,key,index) in nvshen">第{{index}}个女神--  键名：{{key}}--  名字：{{value}}</div>
     </div>
 
 
@@ -166,7 +171,13 @@
                     {name: '多练习'},
                     {name: '多思考'},
                     {name: '多看笔记好好听课'}
-                ]
+                ],
+                nvshen:{
+                    girl1: '陈',
+                    girl2: '高',
+                    girl3: '王',
+                    girl4: '李',
+                }
             },
             methods: {
                 addN: function () {
