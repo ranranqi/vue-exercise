@@ -85,6 +85,16 @@
         <p v-bind:style="{color: color, fontSize: fontSize, border: border}">看我哈哈哈</p>
         计算属性也可以绑定样式<br>
         <div :style="ssss">看我啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</div>
+        <hr>
+        v-if的实例用法： 后接等号，等号后面的内容必须是布尔值<br>
+        <div v-if="type === 'name'">
+            用户名：<input type="text" placeholder="请输入用户名">
+        </div>
+        <div v-else>
+            密 码：<input type="text" placeholder="请输入密码">
+        </div>
+        <button v-on:click="toggleType">点我</button>
+        <hr>
     </div>
 
 
@@ -135,7 +145,8 @@
                 isbuttonbg2: false,
                 color: 'red',
                 fontSize: '20px',
-                border: '5px solid purple'
+                border: '5px solid purple',
+                type: 'name'
             },
             methods: {
                 addN: function () {
@@ -149,6 +160,9 @@
                         this.isbuttonbg = !this.isbuttonbg
                         this.isbuttonbg2 = !this.isbuttonbg2
                     }
+                },
+                toggleType: function(){
+                    this.type = (this.type === 'name' ? 'password' : 'name')
                 }
             },
             computed: {
