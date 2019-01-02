@@ -123,6 +123,12 @@
         <hr>
         需求：返回数组中含有oo的项: <br>
         {{matchoo}}
+        <hr>
+        方法与事件 <br>
+        注意： 如果方法中函数带有参数，事件指令不加括号会有bug,默认传原生事件的对象event，所以方法中带参数，指令事件要带（）括号<br>
+        点击次数{{count}}
+        <button v-on:click="handle()">点我每次加1</button>
+        <button v-on:click="handle(5)">点我每次加5</button>
     </div>
 
 
@@ -188,7 +194,8 @@
                 },
                 arr: [
                     'book', 'pen', 'pencil'
-                ]
+                ],
+                count: 0
             },
             methods: {
                 addN: function () {
@@ -213,6 +220,10 @@
                 },
                 reverseArr: function(){
                     this.arr.reverse()
+                },
+                handle:function(count){
+                    count = count || 1
+                    this.count += count 
                 }
             },
             computed: {
