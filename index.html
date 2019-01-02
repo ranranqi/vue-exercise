@@ -129,6 +129,12 @@
         点击次数{{count}}
         <button v-on:click="handle()">点我每次加1</button>
         <button v-on:click="handle(5)">点我每次加5</button>
+        <hr>
+        Vue中的修饰符 <br>
+        v-on:click.stop 阻止单击事件向上冒泡 <br>
+        <div @click="divClick" style="background:blue; height: 100px; width: 100px">
+            <button @click.stop="btnClick">点我</button>
+        </div>
     </div>
 
 
@@ -224,6 +230,12 @@
                 handle:function(count){
                     count = count || 1
                     this.count += count 
+                },
+                divClick:function(){
+                    alert('div被点击了')
+                },
+                btnClick:function(){
+                    alert('button被点击了')
                 }
             },
             computed: {
