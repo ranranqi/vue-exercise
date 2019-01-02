@@ -120,6 +120,9 @@
         <div v-for="study in arr">{{study}}</div>
         <button @click="sortArr">点我数组里成员的长度从小到大排序</button>
         <button @click="reverseArr">点我数组成员反转排列</button>
+        <hr>
+        需求：返回数组中含有oo的项: <br>
+        {{matchoo}}
     </div>
 
 
@@ -245,6 +248,11 @@
                         fontSize: '40px',
                         border: '2px solid black' 
                     }
+                },
+                matchoo:function(){
+                    return this.arr.filter(function(xxx){
+                        return xxx.match(/oo/)
+                    })
                 }
             },
             filters: {
