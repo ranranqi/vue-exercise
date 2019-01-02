@@ -185,6 +185,13 @@
             <option value="跑步">跑步</option>
         </select>  
         ----现在选中的是: {{typeof valueselect}}----{{valueselect}}
+        <hr>
+        修饰符：lazy<br>
+        <input type="text" v-model.lazy="yy">-----{{yy}} <br>
+        修饰符：number<br>
+        <input type="text" v-model.number="isnum">------{{typeof isnum}} <br>
+        修饰符：trim<br>
+        <input type="text" v-model.trim="space">------{{space.split('').length}} <br>
     </div>
 
 
@@ -202,6 +209,9 @@
                 className: 'xxx',
                 className1: 'yyy',
                 n: 0,
+                yy: '',
+                isnum: '',
+                space:'',
                 package1: [{
                         name: '裤子',
                         price: 100,
