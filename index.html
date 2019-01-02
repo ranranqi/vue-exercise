@@ -48,7 +48,7 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" style="margin-bottom: 200px;">
         {{date}}
         <hr>
         {{date | formDate}}
@@ -135,6 +135,56 @@
         <div @click="divClick" style="background:blue; height: 100px; width: 100px">
             <button @click.stop="btnClick">点我</button>
         </div>
+        <hr>
+        {{m}}
+        <input type="text" v-model="m"> <br>
+        单个单选框：直接用v-bind绑定一个布尔值。<br>
+        单选框: <input type="radio" v-bind:checked="oneradio"><br>
+        多个单选框： 使用v-model来配合value使用，绑定选中的单选框的value值。<br>
+        篮球：<input type="radio" name="checks" value="篮球" v-model="checkname"><br>
+        唱歌：<input type="radio" name="checks" value="唱歌" v-model="checkname"><br>
+        跑步：<input type="radio" name="checks" value="跑步" v-model="checkname"><br>
+        现在选中是-------{{checkname}}
+        <hr>
+        复选框：直接绑定一个布尔值。可以用v-model也可以用v-bind。 <br>
+        单个复选框：使用v-bind用法<input type="checkbox" v-bind:checked="oneradio">
+        使用v-model用法<input type="checkbox" v-model="oneradio">
+        <hr>
+        多个复选框：<br>
+        篮球：<input type="checkbox" value="篮球" v-model="checks"><br>
+        唱歌：<input type="checkbox" value="唱歌" v-model="checks"><br>
+        跑步：<input type="checkbox" value="跑步" v-model="checks"><br>
+        现在选中的是------{{checks}}
+        <hr>
+        单个下拉框：<br>
+        <select v-model="selected">
+            <option value="篮球">篮球</option>
+            <option value="唱歌">唱歌</option>
+            <option value="跑步">跑步</option>
+        </select>   
+        --------现在选中的是: {{selected}}
+        <hr>
+        多个下拉框：<br>
+        <select v-model="selectedmup" multiple>
+            <option value="篮球">篮球</option>
+            <option value="唱歌">唱歌</option>
+            <option value="跑步">跑步</option>
+        </select>   
+        --------现在选中的是: {{selectedmup}}
+        <hr>
+        绑定值：<br>
+        <input type="checkbox" v-model="toggle" :true-value="value1" :false-value="value2">
+        ----{{toggle}} <br>
+        被选中：{{toggle === value1}} <br>
+        未被选中：{{toggle === value2}}
+        <hr>
+        下拉框：<br>
+        <select v-model="valueselect" :value="{numb:111}">
+            <option value="篮球">篮球</option>
+            <option value="唱歌">唱歌</option>
+            <option value="跑步">跑步</option>
+        </select>  
+        ----现在选中的是: {{typeof valueselect}}----{{valueselect}}
     </div>
 
 
@@ -201,7 +251,17 @@
                 arr: [
                     'book', 'pen', 'pencil'
                 ],
-                count: 0
+                count: 0,
+                m: '222',
+                oneradio: true,
+                checkname: '',
+                checks: [],
+                selected: '',
+                selectedmup: '',
+                toggle: true,
+                value1: '我被选中了',
+                value2: '我未被选中了',
+                valueselect: ''
             },
             methods: {
                 addN: function () {
