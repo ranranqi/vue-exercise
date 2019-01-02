@@ -118,7 +118,8 @@
         <hr>
         数组的到排序sort()方法<br>
         <div v-for="study in arr">{{study}}</div>
-        <button @click="sortArr">点我按字母长度从小到大排序</button>
+        <button @click="sortArr">点我数组里成员的长度从小到大排序</button>
+        <button @click="reverseArr">点我数组成员反转排列</button>
     </div>
 
 
@@ -206,6 +207,9 @@
                     this.arr.sort(function(a,b){
                         return a.length - b.length
                     })
+                },
+                reverseArr: function(){
+                    this.arr.reverse()
                 }
             },
             computed: {
