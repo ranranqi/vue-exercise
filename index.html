@@ -115,6 +115,10 @@
         <div v-for="value in nvshen">{{value}}</div>
         拿到value,key,index的写法： v-k-i 外开<br>
         <div v-for="(value,key,index) in nvshen">第{{index}}个女神--  键名：{{key}}--  名字：{{value}}</div>
+        <hr>
+        数组的到排序sort()方法<br>
+        <div v-for="study in arr">{{study}}</div>
+        <button @click="sortArr">点我按字母长度从小到大排序</button>
     </div>
 
 
@@ -177,7 +181,10 @@
                     girl2: '高',
                     girl3: '王',
                     girl4: '李',
-                }
+                },
+                arr: [
+                    'book', 'pen', 'pencil'
+                ]
             },
             methods: {
                 addN: function () {
@@ -194,6 +201,11 @@
                 },
                 toggleType: function(){
                     this.type = (this.type === 'name' ? 'password' : 'name')
+                },
+                sortArr: function(){
+                    this.arr.sort(function(a,b){
+                        return a.length - b.length
+                    })
                 }
             },
             computed: {
