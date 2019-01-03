@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学习vue组件</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.min.js"></script>
+</head>
+
+<body>
+    全局注册组件：<br>
+    <div id="app">
+        <my-component></my-component>
+        <pp-component></pp-component>
+    </div>
+    --------------<br>
+    局部注册组件：<br>
+    <div id="bpp">
+        <my-component></my-component>
+        <pp-component></pp-component>
+        --------------<br>
+        组件模板受限于HTML标签如table标签，里面只能是tr,td,tbody。但可用is属性解决。<br>
+        <table>
+            <tbody is="my-component"></tbody>
+        </table>
+        --------------<br>
+        点击两个一起变<br>
+        <button @click="plus">{{count}}</button>
+        <button @click="plus">{{count}}</button><br>
+        组件<br>
+        当组件中使用data的时候，data必须是一个方法<br>
+        <btn-component></btn-component> 
+        <btn-component></btn-component>   
+    </div>
+    --------------<br>
+    父组件向子组件传递数据使用props <br>
+    <div id="cpp" style="border: 2px solid green; width: 800px; height: 200px;">
+        <h3>我是父组件</h3>
+        <child-component msg="我是来自父组件的内容"></child-component>
+    </div>
+    
+
+    
+
+    <script>
+        Vue.component('my-component', {
+            template: '<div>我是一个全局注册的组件</div>'
+        })
+        new Vue({
+            el: '#app',
+            data: {
+
+            }
+        })
+
+
+        new Vue({
+            el: '#bpp',
+            components:{
+                'pp-component':{
+                    template: '<div>我是一个局部注册的组件</div>'
+                },
+                'btn-component': {
+                    template: '<button @click="count++">{{count}}</button>',
+                    data:function(){
+                        return {
+                            count: 0
+                        }
+                    }
+                }
+            },
+            data: {
+                count: 1
+            },
+            methods:{
+                plus:function(){
+                    this.count +=1
+                }
+            }
+        })
+
+
+        new Vue({
+            el: '#cpp',
+            components:{
+                'child-component':{
+                    props: ['msg'],
+                    template: '<div style="border: 2px solid red;height: 100px; width: 200px">{{msg}}</div>'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
