@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<style>
+    #app{
+        height: 500px;
+        width: 800px;
+        border: 2px solid darkorange;
+        margin: 50px auto;
+    }
+    #app div{
+        width: 400px;
+        height: 200px;
+        border: 2px grey dashed;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>非父子组建通信</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+            <my-acomponent></my-acomponent>
+            <my-bcomponent></my-bcomponent>
+    </div>
+
+    <script>
+        Vue.component('my-acomponent',{
+            template:'<div><button @click="handle">点击我向B组件传递数据</button></div>',
+            data:function(){
+                return{
+                    a: '我是A组件传递的数据'
+                }
+            },
+            methods:{
+                handle: function(){
+                    this.$root.bus.$emit('xxx',this.a)
+                }
+            }
+
+        })
+        Vue.component('my-bcomponent',{
+            template:'<div"></div>',
+            created:function(){
+                //A组件在实例创建时就监听事件---’xxx‘ 事件
+                this.$root.bus.$on('xxx',function(value){
+                    console.log(value)
+                })
+            }
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                //bus中介
+                bus:new Vue()
+            },
+            
+        })
+    </script>
+</body>
+
+</html>
