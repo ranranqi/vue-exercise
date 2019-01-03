@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<style>
+    #app{
+        height: 400px;
+        width: 800px;
+        border: 2px solid darkorange;
+        margin: 50px auto;
+    }
+    #app div{
+        margin: 50px;
+        width: 400px;
+        height: 200px;
+        border: 2px solid darkslateblue;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数据验证</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+            <my-component :a="a" :b="b" :c="c" :d="d" :f="f" :g="g"></my-component>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                a: '1',
+                b: '666',
+                c: true,
+                d: 23232,
+                e: [],
+                f: 88,
+                g: console.log()
+            },
+            components: {
+                'my-component': {
+                    props:{
+                        a: String,
+                        b: [Number,String],
+                        c: {
+                            type: Boolean,
+                            default: true
+                        },
+                        d: {
+                            type: Number,
+                            required: true
+                        },
+                        e: {
+                            type: Array,
+                            default: function(){
+                                return [666]
+                            }
+                        },
+                        f: {
+                            validator: function(value){
+                                return value>10
+                            }
+                        },
+                        g: {
+                            type: Function
+                        }
+                    },
+                    template: '<div>{{a}}---{{b}}---{{c}}---{{d}}---{{e[0]}}---{{f}}</div>',
+                    data: function () {
+                        return {
+
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
