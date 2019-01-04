@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<style>
+    #app{
+        height: 500px;
+        width: 800px;
+        border: 2px solid darkorange;
+        margin: 50px auto;
+    }
+    #app div{
+        width: 400px;
+        height: 200px;
+        border: 2px grey dashed;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自定义组件</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        直接获取焦点: <input type="text" v-focus> <br>
+        <input type="text">
+        <hr>
+        <div v-person:xxx.a.b.c="bbq"></div>
+    </div>
+
+    <script>
+        //自定义组件focus，自动获取input焦点
+        Vue.directive('focus',{
+            inserted: function(el){
+                el.focus()
+            }
+            
+        })
+        Vue.directive('person',{
+            bind: function(el,binding){
+                el.innerHTML = 
+                'name' +'----------'+ binding.name + '<br>'+
+                'value' +'----------'+ binding.value + '<br>'+
+                'expression' +'----------'+ binding.expression + '<br>'+
+                'argument' +'----------'+ binding.arg + '<br>'+
+                'modifiers' +'----------'+ JSON.stringify(binding.modifiers) + '<br>'
+            }
+            
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                bbq: '我是自定义指令所绑定的值'
+            }
+        })
+    </script>
+</body>
+
+</html>
