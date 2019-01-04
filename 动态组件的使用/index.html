@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<style>
+    #app{
+        height: 500px;
+        width: 800px;
+        border: 2px solid darkorange;
+        margin: 50px auto;
+    }
+    #app div{
+        height: 200px;
+        width: 234px;
+        border: 2px darkorange dashed;
+        text-align: center;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动态组件的使用</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="handle('A')">第一句</button>
+        <button @click="handle('B')">第二句</button>
+        <button @click="handle('C')">第三句</button>
+        <button @click="handle('D')">第四句</button>
+        <component :is="thisview"></component>
+    </div>
+
+    <script>
+        //需求：通过点击不同的按钮切换不同的视图
+        Vue.component('comA',{
+            template:'<div>嘿嘿嘿嘿嘿嘿</div>'
+        })
+        Vue.component('comB',{
+            template:'<div>哈哈哈哈哈哈</div>'
+        })
+        Vue.component('comC',{
+            template:'<div>啊啊啊啊啊啊</div>'
+        })
+        Vue.component('comD',{
+            template:'<div>呵呵呵呵呵呵</div>'
+        })
+       
+        new Vue({
+            el: '#app',
+            data: {
+                thisview: 'comA'
+            },
+            methods:{
+                handle:function(tag){
+                   this.thisview = 'com' + tag
+                }
+            }
+            
+        })
+    </script>
+</body>
+
+</html>
