@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<style>
+    #app {
+        height: 500px;
+        width: 800px;
+        border: 2px solid darkorange;
+        margin: 50px auto;
+    }
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>认识render函数</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <child :level='level'>我是子组件</child>
+    </div>
+
+    <!-- <template id="hdom">
+        <div>
+            <h1 v-if="level===1">
+                <slot></slot>
+            </h1>
+            <h2 v-if="level===2">
+                <slot></slot>
+            </h2>
+            <h3 v-if="level===3">
+                <slot></slot>
+            </h3>
+        </div> -->
+    </template>
+
+    <script>
+        //未使用render函数之前的
+        // Vue.component('child', {
+        //     props: ['level'],
+        //     template: '#hdom'
+        // })
+        //使用render函数进行定义组件
+        Vue.component('child',{
+            props: ['level'],
+            render: function(createElement){
+                return createElement('h'+ this.level, this.$slots.default)
+            }
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                level: 1
+            }
+        })
+    </script>
+</body>
+
+</html>
