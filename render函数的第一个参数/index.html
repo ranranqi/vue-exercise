@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<style>
+    #app {
+        height: 500px;
+        width: 800px;
+        border: 2px solid darkorange;
+        margin: 50px auto;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>render函数的第一个参数</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <child></child>
+    </div>
+
+
+    <script>
+        Vue.component('child',{
+            // ---第一个参数必选，可以是String | Object | Function
+
+
+            // String---html标签
+            // render: function(createElement){
+            //      return createElement('div')
+            //  }
+
+
+            // Object---一个含有数据选项的对象
+            // render: function(createElement){
+            //      return createElement({
+            //          template: '<p>好好学习Vue啊</p>'
+            //      })
+            //  }
+
+
+            //Function---方法返回含有数据选项的对象
+            render: function(createElement){
+                var xxx = function(){
+                    return {
+                        template: '<h2>好好学习Vue啊，以后好好找工作啊!!!!!!!!!!!</h2>'
+                    }
+                }
+                return createElement(xxx())
+            }
+        })
+        new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+
+</html>
