@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<style>
+    #app {
+        height: 500px;
+        width: 800px;
+        border: 2px solid darkorange;
+        margin: 50px auto;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>render函数的第二个参数</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+            <child></child>
+    </div>
+
+
+    <script>
+        //createElement方法的第二个参数是可选的
+        Vue.component('child',{
+            render: function(createElement){
+                return createElement(
+                    //createElement方法的第一个参数
+                    {
+                        template: '<div>我是哈哈哈哈哈哈</div>'
+                    },
+                    // 第二个参数是数据对象---只能是Object
+                    {
+                        'class': {
+                            xxx: true,
+                            yyy: false
+                        },
+                        style: {
+                            fontSize: '40px',
+                            color: 'red',
+                            height: '100px',
+                            width: '300px',
+                            background: 'pink'
+                        },
+                        //正常的html特性
+                        attrs: {
+                            id: 'zzz',
+                            src: 'http://baidu.com'
+                        },
+                        //用来写原生DOM属性
+                        domProps: {
+                            innerHTML: '<div>22222</div>'
+                        }
+                    }
+                )
+            }
+        })
+        
+        new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+
+</html>
