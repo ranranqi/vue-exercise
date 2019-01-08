@@ -19,7 +19,9 @@
 
 <body>
     <div id="app">
-            <my-component :name="name" @input="showName"></my-component><br>
+            <!-- <my-component :name="name" @input="showName"></my-component> -->
+            <my-component :name="name" v-model="name"></my-component>
+            <br>
             {{name}}
     </div>
 
@@ -46,11 +48,11 @@
             data:{
                 name: 'kevin'
             },
-            methods:{
-                showName:function(value){
-                    this.name = value
-                }
-            }
+            // methods:{
+            //     showName:function(value){
+            //         this.name = value
+            //     }
+            // }
         })
     </script>
 </body>
