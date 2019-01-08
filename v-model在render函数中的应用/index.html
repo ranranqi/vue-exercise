@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<style>
+    #app {
+        height: 500px;
+        width: 800px;
+        border: 2px solid darkorange;
+        margin: 50px auto;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-model在render函数中的应用</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+            <my-component :name="name" @input="showName"></my-component><br>
+            {{name}}
+    </div>
+
+
+    <script>
+        Vue.component('my-component',{
+            props:['name'],
+            render:function(createElement){
+                var self = this
+                return createElement('input',{
+                    domProps:{
+                        value: self.name
+                    },
+                    on:{
+                        input:function(event){
+                            self.$emit('input',event.target.value)
+                        }
+                    }
+                })
+            }
+        })
+        new Vue({
+            el: '#app',
+            data:{
+                name: 'kevin'
+            },
+            methods:{
+                showName:function(value){
+                    this.name = value
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
