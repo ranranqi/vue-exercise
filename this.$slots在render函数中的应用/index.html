@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<style>
+    #app {
+        height: 500px;
+        width: 800px;
+        border: 2px solid darkorange;
+        margin: 50px auto;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>this.$slots在render函数中的应用</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+            <my-component>
+                <p>待到秋来九月八</p>
+                <p>我花开后百花杀</p>
+                <p>冲天香阵透长安</p>
+                <p>满城尽带黄金甲</p>
+                <h1 slot="header">不第后赋诗</h1>
+                <h4 slot="footer">黄巢</h4>
+            </my-component>
+    </div>
+
+
+    <script>
+        Vue.component('my-component',{
+            render: function(createElement){
+                var header = this.$slots.header
+                var main = this.$slots.default
+                var footer = this.$slots.footer
+
+                return createElement('div',[
+                createElement('header',header),
+                createElement('main',main),
+                createElement('footer',footer)
+                ])
+            }
+        })
+
+        new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+
+</html>
