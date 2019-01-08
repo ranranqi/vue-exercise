@@ -30,13 +30,14 @@
         Vue.component('my-component',{
             props:['name'],
             render:function(createElement){
-                var self = this
+                var self = this //此处的this指的就是组件的Vue实例，把这里的this赋给一个变量
                 return createElement('input',{
                     domProps:{
                         value: self.name
                     },
-                    on:{
+                    on:{  //添加自定义事件，子组件给父组件传递数据
                         input:function(event){
+                            //此处触发事件的this是window,但需要子组件触发事件发送数据，所以必须使用上面的子组件的vue实例中的this 故需要把组件的Vue实例的this赋给一个变量
                             self.$emit('input',event.target.value)
                         }
                     }
