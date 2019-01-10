@@ -1,10 +1,10 @@
 <template>
     <ul>
         <li>
-            <router-link to='/111'> HELLO WORLD </router-link>
+            <router-link :to="{name:'HelloWorld',params:{worldmsg:'你好世界'}}"> HELLO WORLD </router-link>
         </li>
         <li>
-            <router-link to='/222'> HELLO EARTH </router-link>
+            <router-link :to="{name:'HelloEarth',params:{earthmsg:'你好地球'}}"> HELLO EARTH </router-link>
         </li>
     </ul>
 </template>
