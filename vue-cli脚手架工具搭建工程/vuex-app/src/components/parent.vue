@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
-    <span>我是父组件</span> --- {{fromson}}
+    <span>我是父组件</span> --- {{fromson}}<br>
+    我是父组件中拿到的的全局状态： {{getCount}}
     <hr>
     <son :msg="sendSon" @handle="sendSonMsg"></son>
   </div>
@@ -23,7 +24,12 @@ export default {
       sendSonMsg:function(value){
           this.fromson = value
       }
-  }
+  },
+    computed:{
+        getCount:function(){
+            return this.$store.state.num
+        }
+    }
 }
 </script>
 
