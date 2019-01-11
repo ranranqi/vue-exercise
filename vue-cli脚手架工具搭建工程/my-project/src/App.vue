@@ -3,16 +3,19 @@
     <router-view></router-view>
     <img src="./assets/logo.png">
     <list/>
+    <axiosapp/>
   </div>
 </template>
 
 <script>
 import list from './components/list'
+import axiosapp from './components/axiosapp'
 
 export default {
   name: 'App',
   components: {
-    list
+    list,
+    axiosapp
   }
 }
 </script>
