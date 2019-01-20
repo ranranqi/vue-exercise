@@ -30,7 +30,7 @@
 
     <script>
         Vue.component('my-acomponent',{
-            template:'<div><button @click="handle">点击我向B组件传递数据</button></div>',
+            template:'<div>A组件：<button @click="handle">点击我向B组件传递数据</button></div>',
             data:function(){
                 return{
                     a: '我是A组件传递的数据'
@@ -44,11 +44,11 @@
 
         })
         Vue.component('my-bcomponent',{
-            template:'<div"></div>',
+            template:'<div>B组件：<p ref="b"></p></div>',
             created:function(){
                 //A组件在实例创建时就监听事件---’xxx‘ 事件
-                this.$root.bus.$on('xxx',function(value){
-                    alert(value)
+                this.$root.bus.$on('xxx',(value)=>{
+                    this.$refs.b.textContent = value
                 })
             }
         })
@@ -57,8 +57,7 @@
             data: {
                 //bus中介
                 bus:new Vue()
-            },
-            
+            }
         })
     </script>
 </body>
