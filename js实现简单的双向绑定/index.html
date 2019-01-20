@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js实现简单的双向绑定</title>
+    <style>
+        p{
+            border: 1px solid blue;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="inputText">
+    <p id="content"></p>
+</body>
+    <script>
+        var obj = {}
+        var inputText = document.getElementById('inputText')
+        var content = document.getElementById('content')
+        Object.defineProperty(obj,'foo',{
+            get:function(){
+                return obj
+            },
+            set: function(newValue){
+                inputText.value = newValue
+                content.innerHTML = newValue
+            }
+        })
+        inputText.onkeyup = function(e){
+            obj.foo = e.target.value
+        }
+    </script>
+</html>
