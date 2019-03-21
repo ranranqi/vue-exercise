@@ -14,5 +14,7 @@ export default new router({
         name: 'HelloEarth',
         path: '/222',  //指定要跳转的路径
         component: HelloEarth  //指定要跳转的组件
-      }]
+       //指定要跳转的组件
+      }
+    ]
   })

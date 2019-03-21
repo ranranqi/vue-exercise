@@ -1,21 +1,24 @@
 <template>
   <div id="app">
-    <router-view></router-view>
-    <img src="./assets/logo.png">
-    <list/>
     <axiosapp/>
+    <router-view>hahahaha</router-view>
+    <!-- <img src="./assets/logo.png"> -->
+    <list/>
+    <dashboard/>
   </div>
 </template>
 
 <script>
 import list from './components/list'
 import axiosapp from './components/axiosapp'
+import dashboard from './components/dashboard'
 
 export default {
   name: 'App',
   components: {
     list,
-    axiosapp
+    axiosapp,
+    dashboard
   }
 }
 </script>

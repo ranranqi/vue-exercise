@@ -39,6 +39,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .hello {
-  background: rgb(110, 219, 21);
+    background: greenyellow;
 }
 </style>

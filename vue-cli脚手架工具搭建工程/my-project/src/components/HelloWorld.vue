@@ -2,6 +2,7 @@
   <div class="hello">
     <h1>Hello World</h1>
     <h2>跳转页面1111111111111</h2>
+    <slot></slot>
     <h3>我是传递过来的参数：{{$route.params.worldmsg}}</h3>
     <hr>
   </div>
